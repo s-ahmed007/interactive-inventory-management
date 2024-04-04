@@ -7,6 +7,7 @@ use App\Models\InventoryItem;
 class InventoryItemService
 {
     private $filePath = 'inventory-item';
+
     public function createOrUpdate($data, $inventoryItem = null)
     {
         if (data_get($data, 'image')) {
@@ -26,6 +27,7 @@ class InventoryItemService
 
     public function delete($inventoryItem)
     {
+        UploadService::deleteFile($inventoryItem->image);
         $inventoryItem->delete();
         return true;
     }

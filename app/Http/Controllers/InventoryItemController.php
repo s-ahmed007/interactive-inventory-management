@@ -72,26 +72,39 @@ class InventoryItemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(InventoryItem $inventoryItem)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, InventoryItem $inventoryItem)
+    public function update(Request $request, Inventory $inventory, InventoryItem $inventoryItem)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'quantity' => 'required',
+            'image' => 'nullable|image|max:2048',
+            'description' => 'nullable',
+        ]);
+        if ($validator->fails()) {
+            return $this->response(false, 'Please provide  data', null, $validator->errors(), 422);
+        }
+        $data = $request->only(['name', 'description', 'image', 'description']);
+
+        try {
+            $inventoryItem = $this->inventoryItemService->createOrUpdate($data, $inventoryItem);
+            return $this->response(true, 'Updated successfully', $inventoryItem);
+        } catch (\Exception $e) {
+            return $this->response(false, 'Something went wrong!', null, [], 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InventoryItem $inventoryItem)
+    public function destroy(Inventory $inventory, InventoryItem $inventoryItem)
     {
-        //
+        try {
+            $this->inventoryItemService->delete($inventoryItem);
+            return $this->response(true, 'Deleted successfully');
+        } catch (\Exception $e) {
+            return $this->response(false, 'Something went wrong!', null, [], 404);
+        }
     }
 }
