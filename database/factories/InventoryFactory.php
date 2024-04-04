@@ -17,7 +17,7 @@ class InventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=> fake()->word(),
+            'name'=> fake()->colorName(),
             'user_id'=> mt_rand(1, 20),
             'description'=> fake()->sentence()
         ];
