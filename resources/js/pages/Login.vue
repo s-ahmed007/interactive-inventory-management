@@ -1,18 +1,20 @@
 <script setup>
   import {ref} from 'vue';
   import { useRouter } from 'vue-router';
+  import {useAuthStore} from '../stores/authStore';
 
+  const authStore = useAuthStore()
   const router = useRouter();
   const loginForm = ref({email: '', password: ''});
   const errors = ref([]);
 
 // methods
   function logIn() {
-    // console.log(loginForm.value);return
-
     axios.post('/login', loginForm.value).then(res => {
-      console.log(res.data);
       const {token, user} = res.data.data
+
+      authStore.setAuthInfo(user, token)
+
       localStorage?.setItem('token', token)
       localStorage?.setItem('user', JSON.stringify(user))
       loginForm.value = {}

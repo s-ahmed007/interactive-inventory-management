@@ -1,12 +1,14 @@
 <script setup>
   import { useRouter } from 'vue-router';
+  import {useAuthStore} from '../stores/authStore';
 
+  const authStore = useAuthStore()
   const router = useRouter();
+
 // methods
   function logout(){
     axios.post('/logout').then(res => {
-      localStorage?.removeItem('token')
-      localStorage?.removeItem('user')
+      authStore.removeAuthInfo()
       router.push('/login')
     })
   }
@@ -20,12 +22,12 @@
             </div>
             <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                 <ul class="nav flex-column">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link to="/" class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
                             <i class="bi bi-speedometer2"></i>
                             Dashboard
                         </router-link>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <router-link to="/inventory" class="nav-link d-flex align-items-center gap-2" href="#">
                             <i class="bi bi-box2"></i>
