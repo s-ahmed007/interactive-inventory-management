@@ -24,6 +24,7 @@ class InventoryController extends Controller
         try {
             $perPage = $request->get('per_page');
             $inventories = Inventory::select('id', 'name', 'description')
+                ->whereUserId(auth()->id())
                 ->latest()
                 ->paginate($perPage);
 
@@ -48,6 +49,7 @@ class InventoryController extends Controller
         }
 
         $data = $request->only('name', 'description');
+        $data['user_id'] = auth()->id();
 
         try {
             $results = $this->inventoryService->createOrUpdate($data);
