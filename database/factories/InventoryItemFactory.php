@@ -18,7 +18,7 @@ class InventoryItemFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'inventory_id' => mt_rand(1, 50),
+            'inventory_id' => mt_rand(1, 500),
             'quantity' => mt_rand(1, 100),
             'description' => fake()->paragraph(),
         ];
