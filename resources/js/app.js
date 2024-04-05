@@ -1,9 +1,7 @@
 import './bootstrap';
 /* Import all of Bootstrap's CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-/* @import "bootstrap-icons/font/bootstrap-icons"; */
-// import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+import 'vue3-toastify/dist/index.css';
 
 
 import {createApp} from 'vue';

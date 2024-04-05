@@ -4,7 +4,7 @@ export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: null,
     token: null,
-    reqHeader: ''
+    reqHeader: null
   }),
   actions: {
     setAuthInfo(data, token) { // set auth info after login
@@ -20,6 +20,7 @@ export const useAuthStore = defineStore('authStore', {
       removeAuthInfo() {
         this.user = null
         this.token = null
+        this.reqHeader = null
         localStorage?.removeItem('token')
         localStorage?.removeItem('user')
       }

@@ -64,7 +64,11 @@ class InventoryController extends Controller
      */
     public function show(Inventory $inventory)
     {
-        //
+        try {
+            return $this->response(true, 'Inventory details', $inventory);
+        } catch (\Exception $e) {
+            return $this->response(false, $e->getMessage() ?? 'Something went wrong!', null, [],404);
+        }
     }
 
     /**

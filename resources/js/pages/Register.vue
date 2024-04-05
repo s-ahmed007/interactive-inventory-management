@@ -1,7 +1,9 @@
 <script setup>
   import {ref} from 'vue';
   import { useRouter } from 'vue-router';
+  import {useAuthStore} from '../stores/authStore';
 
+  const authStore = useAuthStore()
   const router = useRouter();
   const registerForm = ref({name: '', email: '', password: ''});
   const errors = ref([]);
@@ -12,6 +14,7 @@
           const {token, user} = res.data.data
           localStorage?.setItem('token', token)
           localStorage?.setItem('user', user)
+          authStore.setAuthInfo(user, token)
           registerForm.value = {}
           router.push('/inventory')
       }).catch(errors => {

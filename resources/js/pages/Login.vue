@@ -13,10 +13,9 @@
     axios.post('/login', loginForm.value).then(res => {
       const {token, user} = res.data.data
 
-      authStore.setAuthInfo(user, token)
-
       localStorage?.setItem('token', token)
       localStorage?.setItem('user', JSON.stringify(user))
+      authStore.setAuthInfo(user, token)
       loginForm.value = {}
       router.push('/inventory')
     }).catch(errors => {
