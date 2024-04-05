@@ -66,9 +66,13 @@ class InventoryItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(InventoryItem $inventoryItem)
+    public function show(Inventory $inventory, InventoryItem $inventoryItem)
     {
-        //
+        try {
+            return $this->response(true, 'Inventory Item details', $inventoryItem);
+        } catch (\Exception $e) {
+            return $this->response(false, $e->getMessage() ?? 'Something went wrong!', null, [],404);
+        }
     }
 
     /**

@@ -13,7 +13,7 @@
       axios.post('/register', registerForm.value).then(res => {
           const {token, user} = res.data.data
           localStorage?.setItem('token', token)
-          localStorage?.setItem('user', user)
+          localStorage?.setItem('user', JSON.stringify(user))
           authStore.setAuthInfo(user, token)
           registerForm.value = {}
           router.push('/inventory')

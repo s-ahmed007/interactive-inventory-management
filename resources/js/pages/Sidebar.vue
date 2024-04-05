@@ -7,7 +7,7 @@
 
 // methods
   function logout(){
-    axios.post('/logout').then(res => {
+    axios.get('/logout', {headers: authStore.reqHeader}).then(res => {
       authStore.removeAuthInfo()
       router.push('/login')
     })
@@ -22,22 +22,10 @@
             </div>
             <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                 <ul class="nav flex-column">
-                    <!-- <li class="nav-item">
-                        <router-link to="/" class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
-                            <i class="bi bi-speedometer2"></i>
-                            Dashboard
-                        </router-link>
-                    </li> -->
                     <li class="nav-item">
                         <router-link to="/inventory" class="nav-link d-flex align-items-center gap-2" href="#">
                             <i class="bi bi-box2"></i>
                             Inventory
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/inventory-item" class="nav-link d-flex align-items-center gap-2" href="#">
-                            <i class="bi bi-boxes"></i>
-                            Inventory Item
                         </router-link>
                     </li>
                     <hr class="my-3">

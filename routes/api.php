@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->middleware('auth:sanctum');
+    // Route::get('/user', function (Request $request) {
+    //     return $request->user();
+    // })->middleware('auth:sanctum');
 
     Route::post("/register", [UserController::class, "register"]);
     Route::post("/login", [UserController::class, "login"]);
 
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post("/logout", [UserController::class, "logout"]);
+        Route::get("/logout", [UserController::class, "logout"]);
 
         Route::apiResource('/inventories', InventoryController::class);
         Route::apiResource('/inventories/{inventory}/inventoryItems', InventoryItemController::class);

@@ -5,8 +5,9 @@ import Register from './pages/Register.vue';
 import Inventory from './pages/inventory/Inventory.vue';
 import CreateInventory from "./pages/inventory/CreateInventory.vue";
 import UpdateInventory from "./pages/inventory/UpdateInventory.vue";
-
-// import InventoryItem from './pages/inventoryItem/InventoryItem.vue'
+import InventoryItem from './pages/inventory-item/Items.vue';
+import inventoryItemCreate from "./pages/inventory-item/ItemCreate.vue";
+import inventoryItemUpdate from "./pages/inventory-item/ItemUpdate.vue";
 
 const routes = [
     {path: '/', redirect: '/login'},
@@ -15,8 +16,9 @@ const routes = [
     {path: '/inventory', name: 'inventory', component: Inventory, meta: {title: 'Inventory list', requiresAuth: true}},
     {path: '/inventory/create', name: 'createInventory', component: CreateInventory, meta: {title: 'Create Inventory', requiresAuth: true}},
     {path: '/inventory/update/:id', name: 'UpdateInventory', component: UpdateInventory, meta: {title: 'Update Inventory', requiresAuth: true}},
-
-    // {path: '/inventory-item', name: 'inventoryItem', component: InventoryItem, meta: {requiresAuth: true}},
+    {path: '/inventory/:inventoryId/item', name: 'inventoryItem', component: InventoryItem, meta: {title: 'Inventory item', requiresAuth: true}},
+    {path: '/inventory/:inventoryId/item/create', name: 'inventoryItemCreate', component: inventoryItemCreate, meta: {title: 'Inventory item create', requiresAuth: true}},
+    {path: '/inventory/:inventoryId/item/:id/update', name: 'inventoryItemUpdate', component: inventoryItemUpdate, meta: {title: 'Inventory item update', requiresAuth: true}},
 ]
 
 const router = createRouter({

@@ -7,7 +7,7 @@ import InventoryForm from "../../components/inventory/InventoryForm.vue";
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Update Inventory</h1>
-            <router-link to="/inventory" class="btn btn-sm btn-warning"  title="Back"><i class="bi bi-arrow-left"></i> Back</router-link>
+            <router-link to="/inventory" class="btn btn-sm btn-warning" title="Back"><i class="bi bi-arrow-left"></i> Back</router-link>
         </div>
         <InventoryForm operation="update" :id="$route.params.id"></InventoryForm>
     </main>

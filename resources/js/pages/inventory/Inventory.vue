@@ -62,6 +62,10 @@ const pagination = ref()
                         <td>{{inventory.name}}</td>
                         <td>{{inventory.description}}</td>
                         <td>
+                          <router-link :to="{ name: 'inventoryItem', params: {inventoryId: inventory?.id} }"
+                                      class="btn btn-sm btn-primary me-2" title="Inventory Item"><i class="bi bi-boxes"></i>
+                              Item
+                          </router-link>
                           <router-link :to="{ name: 'UpdateInventory', params: {id: inventory?.id} }"
                                       class="btn btn-sm btn-info me-2" title="Edit"><i class="bi bi-pencil-square"></i>
                               Edit
