@@ -25,7 +25,7 @@
     return errors.value = e;
   }
   function getError(key) {
-    return !!this.errors && this.errors[key] !== undefined ? this.errors[key][0] : null;
+    return !!errors.value && errors.value[key] !== undefined ? errors.value[key][0] : null;
   }
 </script>
 <template>

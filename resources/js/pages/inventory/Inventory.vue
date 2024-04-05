@@ -30,7 +30,7 @@ const pagination = ref()
       axios.delete(`/inventories/${id}`, {headers: authStore.reqHeader})
         .then(res => {
           toast.success(res?.data?.message, {theme: 'colored'})
-          this.getAllInventories()
+          getAllInventories()
         }).catch(errors => {
           //
       })
